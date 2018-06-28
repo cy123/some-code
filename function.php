@@ -17,6 +17,24 @@ function tree_to_list($tree, $child_name= 'children')
     return $tree;
 }
 
+// 树形转一维
+function set_list($tree, $child_name= 'children')
+{
+    $arr = [];
+    foreach ($tree as $v) {
+
+        if (!empty($v[$child_name])) {
+            $children = set_list($v[$child_name]);
+            if (!empty($children)) {
+                $arr = array_merge($arr, $children);
+            }
+        }
+        unset($v[$child_name]);
+        $arr[] = $v;
+    }
+    return $arr;
+}
+
 
 
 $data[] = [
