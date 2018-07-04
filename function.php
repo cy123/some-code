@@ -17,6 +17,29 @@ function tree_to_list($tree, $child_name= 'children')
     return $tree;
 }
 
+// 树组转一维数组
+function tree_to_list_v2($tree, $child_name= 'children')
+{
+    do {
+        if (!empty(current($tree)[$child_name])) {
+            $children = current($tree)[$child_name];
+            foreach ($children as $v) {
+                array_push($tree, $v);
+            }
+            $key = key($tree);
+            unset($tree[$key][$child_name]);
+
+        }
+    } while (next($tree));
+	return $tree;
+}
+$tree[] = [1,2,3];
+$tree[] = [4,5,6];
+$tree[] = [7,8,9];
+$tree[2]['children'][] = [10,11,12];
+$tree[2]['children'][0]['children'][] = [100,200,300];
+$lists = tree_to_list_v2($tree);
+var_dump($lists);die;
 // 树形转一维
 function set_list($tree, $child_name= 'children')
 {
