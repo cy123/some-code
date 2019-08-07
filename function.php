@@ -105,3 +105,11 @@ foreach ($list as $id => $v)
         $tree[$id]=& $list[$id];
     }
 }
+
+// laravel
+
+Profile::whereIn('profiles.id', function($query) use ($mac_address) {
+    $query->from('devices')
+        ->select('devices.profile_id')
+        ->where('devices.mac_address', $mac_address);
+})
