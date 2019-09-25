@@ -9,3 +9,11 @@ if (n > 0) {
 }
 return tem += this.letter_map[m]
 },
+
+function format(number){
+ let fixed=number.toFixed(2).toString();
+ let reg = fixed.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+ return fixed.replace(reg,"$1,");
+}
+
+parseFloat(12342).toFixed(2).replace(/(\d)(?=(\d{3})+\.\d+$)/g, '$1,')
