@@ -17,3 +17,10 @@ function format(number){
 }
 
 parseFloat(12342).toFixed(2).replace(/(\d)(?=(\d{3})+\.\d+$)/g, '$1,')
+
+// 将url.hash转obj
+var obj = {}
+var reg = /([^?=&#]+)=([^?=&#]+)/g
+'agent=1234&bere=2&cc=1&cd=34'.replace(reg,($1,$2,$3)=>{obj[$2]=$3})
+
+
